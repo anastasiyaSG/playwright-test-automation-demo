@@ -1,0 +1,8 @@
+__pycache__/
+.pytest_cache/
+.venv/
+.env
+playwright-report/
+test-results/
+PORTFOLIO_DEMO_PROMPT.md
+REPORT_PUBLISHING.md
