@@ -1,0 +1,3 @@
+INFO     tests.e2e.test_portfolio:test_portfolio.py:79 Arrange: create the portfolio page object
+INFO     tests.e2e.test_portfolio:test_portfolio.py:82 Act: open the CV builder project dialog
+INFO     tests.e2e.test_portfolio:test_portfolio.py:85 Assert: project dialog heading and GitHub link are visible
