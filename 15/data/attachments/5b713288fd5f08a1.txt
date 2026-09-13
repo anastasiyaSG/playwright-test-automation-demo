@@ -1,0 +1,3 @@
+INFO     tests.e2e.test_portfolio:test_portfolio.py:40 Arrange: create the portfolio page object
+INFO     tests.e2e.test_portfolio:test_portfolio.py:43 Act: open the philosophy dialog
+INFO     tests.e2e.test_portfolio:test_portfolio.py:46 Assert: philosophy dialog heading and outcome are visible
