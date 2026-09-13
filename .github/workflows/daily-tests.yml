@@ -35,11 +35,15 @@ jobs:
 
       - name: Get Allure history
         if: always()
-        continue-on-error: true
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          path: gh-pages
+        shell: bash
+        run: |
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
+            git fetch origin gh-pages:gh-pages
+            mkdir -p gh-pages
+            git archive gh-pages | tar -x -C gh-pages
+          else
+            mkdir -p gh-pages/last-history
+          fi
 
       - name: Initialize empty Allure history
         if: always()
