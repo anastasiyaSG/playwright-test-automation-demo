@@ -11,17 +11,19 @@ Target: <https://anastasiyasg.github.io/portfolio/>
 - The homepage title and H1 clearly identify the QA Engineer / SDET positioning.
 - The “View case studies” hero link reaches the featured Black Friday case study.
 - The “Get in touch” hero link reaches the contact section.
+- The contact email, LinkedIn, and GitHub links are visible and have destinations.
+- The profile photo is visible.
+- Six detail dialogs open with the expected content.
 
 These are intentionally smoke-level checks for a portfolio, not a large synthetic test suite.
 
 ## Structure
 
 ```text
-pages/       BasePage and PortfolioPage objects
+pages/       PortfolioPage element references only
 elements/    Centralized semantic locator factories
-actions/     Small navigation flows built on the page object
-fixtures/    Browser, context, page, and environment fixtures
-tests/e2e/   Three portfolio smoke tests
+actions/     Browser, context, page, and environment fixtures
+tests/e2e/   Basic portfolio smoke and interaction tests
 ```
 
 Tests use `get_by_role` and visible text. There are no XPath selectors and no hardcoded CSS selectors.
