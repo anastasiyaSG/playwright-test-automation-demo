@@ -41,6 +41,10 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
+      - name: Initialize empty Allure history
+        if: always()
+        run: mkdir -p gh-pages/last-history
+
       - name: Generate Allure report with history
         if: always()
         uses: simple-elf/allure-report-action@v1.15
