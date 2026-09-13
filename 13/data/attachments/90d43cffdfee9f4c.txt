@@ -1,0 +1,3 @@
+INFO     tests.e2e.test_portfolio:test_portfolio.py:92 Arrange: create the portfolio page object
+INFO     tests.e2e.test_portfolio:test_portfolio.py:95 Act: open the car watcher project dialog
+INFO     tests.e2e.test_portfolio:test_portfolio.py:98 Assert: car watcher dialog heading is visible
