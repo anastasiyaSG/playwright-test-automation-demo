@@ -6,14 +6,15 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    concurrency:
+      group: allure-report
+      cancel-in-progress: false
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -30,17 +31,25 @@ jobs:
         run: python -m playwright install --with-deps chromium
 
       - name: Run full test suite
-        run: python -m pytest --timeout=120
+        run: python -m pytest --timeout=120 --alluredir=allure-results --clean-alluredir
 
-      - name: Configure GitHub Pages
+      - name: Get Allure history
         if: always()
-        uses: actions/configure-pages@v5
-
-      - name: Upload Playwright HTML report
-        if: always()
-        uses: actions/upload-pages-artifact@v3
+        continue-on-error: true
+        uses: actions/checkout@v4
         with:
-          path: playwright-report
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Generate Allure report with history
+        if: always()
+        uses: simple-elf/allure-report-action@v1.15
+        with:
+          allure_results: allure-results
+          allure_report: allure-report
+          gh_pages: gh-pages
+          allure_history: allure-history
+          keep_reports: 7
 
       - name: Upload screenshots and traces
         if: always()
@@ -51,14 +60,12 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
-  deploy-report:
-    needs: test
-    if: always()
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy report to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Publish Allure report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+          keep_files: false
+          force_orphan: false
