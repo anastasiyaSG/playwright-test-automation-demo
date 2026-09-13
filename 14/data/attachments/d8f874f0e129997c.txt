@@ -1,0 +1,3 @@
+INFO     tests.e2e.test_portfolio:test_portfolio.py:53 Arrange: create the portfolio page object
+INFO     tests.e2e.test_portfolio:test_portfolio.py:56 Act: open the experience dialog
+INFO     tests.e2e.test_portfolio:test_portfolio.py:59 Assert: experience dialog heading and role are visible
