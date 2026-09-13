@@ -1,0 +1,3 @@
+INFO     tests.e2e.test_portfolio:test_portfolio.py:104 Arrange: create the portfolio page object
+INFO     tests.e2e.test_portfolio:test_portfolio.py:107 Act: navigate to case studies
+INFO     tests.e2e.test_portfolio:test_portfolio.py:110 Assert: projects section is selected and visible

@@ -1,0 +1,3 @@
+INFO     tests.e2e.test_portfolio:test_portfolio.py:28 Arrange: create the portfolio page object
+INFO     tests.e2e.test_portfolio:test_portfolio.py:31 Act: open the certificate dialog
+INFO     tests.e2e.test_portfolio:test_portfolio.py:34 Assert: certificate dialog heading is visible
