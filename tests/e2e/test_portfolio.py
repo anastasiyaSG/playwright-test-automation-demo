@@ -126,6 +126,22 @@ async def test_contact_cta_navigates_to_contact(portfolio):
 
 
 @pytest.mark.e2e
+@pytest.mark.xfail(
+    strict=True,
+    reason="Responsive mobile navigation menu is not implemented yet",
+)
+async def test_mobile_navigation_has_menu_button(portfolio):
+    logger.info("Arrange: create the portfolio page object")
+    page = PortfolioPage(portfolio)
+
+    logger.info("Act: set a mobile viewport")
+    await portfolio.set_viewport_size({"width": 390, "height": 844})
+
+    logger.info("Assert: mobile navigation menu button is visible")
+    await expect(page.mobile_navigation_menu_button).to_be_visible(timeout=1000)
+
+
+@pytest.mark.e2e
 async def test_contact_links_are_available(portfolio):
     logger.info("Arrange: create the portfolio page object")
     page = PortfolioPage(portfolio)

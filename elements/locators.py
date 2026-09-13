@@ -23,6 +23,10 @@ class PortfolioLocators:
         return page.get_by_role("link", name="Get in touch")
 
     @staticmethod
+    def mobile_navigation_menu_button(page: Page):
+        return page.get_by_role("button", name="Open navigation")
+
+    @staticmethod
     def case_study_heading(page: Page):
         return page.get_by_role(
             "heading", name="Black Friday: capacity testing that prevented an incident"
@@ -43,6 +47,10 @@ class PortfolioLocators:
     @staticmethod
     def contact_github(page: Page):
         return page.get_by_role("link", name="github.com/anastasiyaSG")
+
+    @staticmethod
+    def resume_download_link(page: Page):
+        return page.get_by_role("link", name="Download résumé (PDF) →")
 
     @staticmethod
     def certificate_button(page: Page):
