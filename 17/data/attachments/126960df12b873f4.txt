@@ -1,0 +1,3 @@
+INFO     tests.e2e.test_portfolio:test_portfolio.py:66 Arrange: create the portfolio page object
+INFO     tests.e2e.test_portfolio:test_portfolio.py:69 Act: open the toolset dialog
+INFO     tests.e2e.test_portfolio:test_portfolio.py:72 Assert: toolset dialog and automation section are visible
