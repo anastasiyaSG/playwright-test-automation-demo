@@ -1,3 +1,0 @@
-INFO     tests.e2e.test_portfolio:test_portfolio.py:130 Arrange: create the portfolio page object
-INFO     tests.e2e.test_portfolio:test_portfolio.py:133 Act: collect contact links
-INFO     tests.e2e.test_portfolio:test_portfolio.py:136 Assert: contact links are visible and have destinations
