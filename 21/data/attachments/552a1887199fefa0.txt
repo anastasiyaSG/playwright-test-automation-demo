@@ -1,0 +1,3 @@
+INFO     tests.e2e.test_portfolio:test_portfolio.py:134 Arrange: create the portfolio page object
+INFO     tests.e2e.test_portfolio:test_portfolio.py:137 Act: set a mobile viewport
+INFO     tests.e2e.test_portfolio:test_portfolio.py:140 Assert: mobile navigation menu button is visible
