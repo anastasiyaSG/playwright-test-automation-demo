@@ -33,6 +33,7 @@ async def test_certificate_popup_contains_certificate_title(portfolio):
 
     logger.info("Assert: certificate dialog heading is visible")
     await expect(page.certificate_dialog_heading).to_be_visible()
+    await expect(page.certificate_pdf).to_be_visible()
 
 
 @pytest.mark.e2e
@@ -72,6 +73,74 @@ async def test_toolset_popup_contains_automation_section(portfolio):
     logger.info("Assert: toolset dialog and automation section are visible")
     await expect(page.toolset_dialog_heading).to_be_visible()
     await expect(page.toolset_automation_heading).to_be_visible()
+
+
+@pytest.mark.e2e
+async def test_ai_workflow_navigation_reaches_section(portfolio):
+    """Verify the primary navigation reaches the compact AI workflow section."""
+    page = PortfolioPage(portfolio)
+
+    await page.ai_workflow_nav_link.click()
+
+    assert portfolio.url.endswith("#ai-workflow")
+    await expect(page.ai_workflow_region).to_be_visible()
+    await expect(page.ai_workflow_intro).to_be_visible()
+    await expect(page.ai_workflow_details_button).to_be_visible()
+
+
+@pytest.mark.e2e
+async def test_ai_workflow_dialog_covers_stages_and_review_practices(portfolio):
+    """Verify the details dialog covers workflow stages, guardrails, and tools."""
+    page = PortfolioPage(portfolio)
+
+    await page.ai_workflow_details_button.click()
+
+    await expect(page.ai_workflow_dialog).to_be_visible()
+    for step_heading in page.ai_workflow_steps.values():
+        await expect(step_heading).to_be_visible()
+    await expect(page.ai_workflow_guardrails_heading).to_be_visible()
+    await expect(page.ai_workflow_lessons_heading).to_be_visible()
+    await expect(page.ai_workflow_day_to_day_heading).to_be_visible()
+    for tool_tag in page.ai_workflow_tools.values():
+        await expect(tool_tag).to_be_visible()
+    await expect(page.ai_workflow_dialog.get_by_text("AI is an accelerator, not a source of truth.")).to_be_visible()
+
+
+@pytest.mark.e2e
+async def test_ai_workflow_dialog_can_be_dismissed_with_escape(portfolio):
+    """Verify the workflow details dialog supports keyboard dismissal."""
+    page = PortfolioPage(portfolio)
+
+    await page.ai_workflow_details_button.click()
+    await expect(page.ai_workflow_dialog).to_be_visible()
+    await portfolio.keyboard.press("Escape")
+
+    await expect(page.ai_workflow_dialog).to_have_count(0)
+
+
+@pytest.mark.e2e
+async def test_education_section_is_available_from_navigation(portfolio):
+    logger.info("Arrange: create the portfolio page object")
+    page = PortfolioPage(portfolio)
+
+    logger.info("Act: navigate to the Education section")
+    await page.education_nav_link.click()
+
+    logger.info("Assert: education entries and engineering background are visible")
+    assert portfolio.url.endswith("#education")
+    await expect(page.education_region).to_be_visible()
+    await expect(page.education_heading).to_be_visible()
+    await expect(page.education_masters_heading).to_be_visible()
+    await expect(page.education_bachelors_heading).to_be_visible()
+    await expect(page.education_training_heading).to_be_visible()
+    await expect(page.education_background).to_be_visible()
+    await expect(page.education_region.get_by_text("6.00/6.00").first).to_be_visible()
+    assert await page.education_entries.count() == 3
+    education_periods = [
+        (await entry.inner_text()).splitlines()[0]
+        for entry in await page.education_entries.all()
+    ]
+    assert education_periods == ["2019 – 2020", "2013 – 2015", "2008 – 2012"]
 
 
 @pytest.mark.e2e
@@ -126,19 +195,18 @@ async def test_contact_cta_navigates_to_contact(portfolio):
 
 
 @pytest.mark.e2e
-@pytest.mark.xfail(
-    strict=True,
-    reason="Responsive mobile navigation menu is not implemented yet",
-)
 async def test_mobile_navigation_has_menu_button(portfolio):
+    """Verify the horizontal navigation reaches Education on mobile."""
     logger.info("Arrange: create the portfolio page object")
     page = PortfolioPage(portfolio)
 
-    logger.info("Act: set a mobile viewport")
+    logger.info("Act: set a mobile viewport and activate Education navigation")
     await portfolio.set_viewport_size({"width": 390, "height": 844})
+    await page.education_nav_link.click()
 
-    logger.info("Assert: mobile navigation menu button is visible")
-    await expect(page.mobile_navigation_menu_button).to_be_visible(timeout=1000)
+    logger.info("Assert: mobile navigation reaches Education")
+    assert portfolio.url.endswith("#education")
+    await expect(page.education_region).to_be_visible()
 
 
 @pytest.mark.e2e

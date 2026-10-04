@@ -23,6 +23,14 @@ class PortfolioLocators:
         return page.get_by_role("link", name="Get in touch")
 
     @staticmethod
+    def ai_workflow_nav_link(page: Page):
+        return page.get_by_role("link", name="AI Workflow", exact=True)
+
+    @staticmethod
+    def education_nav_link(page: Page):
+        return page.get_by_role("link", name="Education", exact=True)
+
+    @staticmethod
     def mobile_navigation_menu_button(page: Page):
         return page.get_by_role("button", name="Open navigation")
 
@@ -88,6 +96,10 @@ class PortfolioLocators:
         )
 
     @staticmethod
+    def certificate_pdf(page: Page):
+        return page.get_by_title("ISTQB Test Automation Engineer certificate")
+
+    @staticmethod
     def philosophy_dialog_heading(page: Page):
         return page.get_by_role("heading", name="Quality work starts before testing")
 
@@ -108,6 +120,57 @@ class PortfolioLocators:
     @staticmethod
     def toolset_automation_heading(page: Page):
         return page.get_by_role("heading", name="Automation & Testing").last
+
+    @staticmethod
+    def ai_workflow_region(page: Page):
+        return page.get_by_role("region", name="AI-Augmented QA Workflow")
+
+    @staticmethod
+    def ai_workflow_intro(page: Page):
+        return page.get_by_text(
+            "I integrated AI tooling (Claude Code) into the full QA lifecycle. "
+            "AI accelerates the work; I stay accountable for quality decisions."
+        )
+
+    @staticmethod
+    def ai_workflow_details_button(page: Page):
+        return page.get_by_role("button", name="View AI-augmented QA workflow →")
+
+    @staticmethod
+    def ai_workflow_dialog(page: Page):
+        return page.get_by_role("dialog", name="AI-Augmented QA Workflow")
+
+    @staticmethod
+    def ai_workflow_step_heading(page: Page, name: str):
+        return PortfolioLocators.ai_workflow_dialog(page).get_by_role(
+            "heading", name=name, level=3
+        )
+
+    @staticmethod
+    def ai_workflow_subsection_heading(page: Page, name: str):
+        return PortfolioLocators.ai_workflow_dialog(page).get_by_role(
+            "heading", name=name, level=3
+        )
+
+    @staticmethod
+    def ai_workflow_tool(page: Page, name: str):
+        return PortfolioLocators.ai_workflow_dialog(page).get_by_text(name, exact=True)
+
+    @staticmethod
+    def education_region(page: Page):
+        return page.get_by_role("region", name="Education")
+
+    @staticmethod
+    def education_entries(page: Page):
+        return PortfolioLocators.education_region(page).locator("ol > li")
+
+    @staticmethod
+    def education_heading(page: Page):
+        return page.get_by_role("heading", name="Education", exact=True)
+
+    @staticmethod
+    def education_entry_heading(page: Page, name: str):
+        return page.get_by_role("heading", name=name, exact=True)
 
     @staticmethod
     def project_dialog(page: Page):
