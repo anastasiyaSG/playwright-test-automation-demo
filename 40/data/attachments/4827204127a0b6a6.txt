@@ -1,0 +1,3 @@
+INFO     tests.e2e.test_portfolio:test_portfolio.py:228 Arrange: create the portfolio page object
+INFO     tests.e2e.test_portfolio:test_portfolio.py:231 Act: locate the profile photo
+INFO     tests.e2e.test_portfolio:test_portfolio.py:234 Assert: profile photo is visible
