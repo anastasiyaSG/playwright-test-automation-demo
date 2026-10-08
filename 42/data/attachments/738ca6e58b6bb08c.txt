@@ -1,0 +1,3 @@
+INFO     tests.e2e.test_portfolio:test_portfolio.py:123 Arrange: create the portfolio page object
+INFO     tests.e2e.test_portfolio:test_portfolio.py:126 Act: navigate to the Education section
+INFO     tests.e2e.test_portfolio:test_portfolio.py:129 Assert: education entries and engineering background are visible
