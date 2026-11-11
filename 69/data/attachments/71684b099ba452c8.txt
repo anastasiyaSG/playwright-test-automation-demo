@@ -1,3 +1,0 @@
-INFO     tests.e2e.test_portfolio:test_portfolio.py:200 Arrange: create the portfolio page object
-INFO     tests.e2e.test_portfolio:test_portfolio.py:203 Act: set a mobile viewport and activate Education navigation
-INFO     tests.e2e.test_portfolio:test_portfolio.py:207 Assert: mobile navigation reaches Education
