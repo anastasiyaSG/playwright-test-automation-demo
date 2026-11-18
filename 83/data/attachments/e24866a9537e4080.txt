@@ -1,0 +1,3 @@
+INFO     tests.e2e.test_portfolio:test_portfolio.py:16 Arrange: create the portfolio page object
+INFO     tests.e2e.test_portfolio:test_portfolio.py:19 Act: locate the homepage heading
+INFO     tests.e2e.test_portfolio:test_portfolio.py:22 Assert: homepage heading is visible
